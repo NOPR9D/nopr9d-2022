@@ -4,7 +4,7 @@
   "description": "personnal website",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:front": "cd ./Front && npm run start"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://gitlab.com/nopr3d/noprod.fr-2021/issues"
   },
-  "homepage": "https://gitlab.com/nopr3d/noprod.fr-2021#readme"
+  "homepage": "https://gitlab.com/nopr3d/noprod.fr-2021#readme",
+  "devDependencies": {
+    "prettier": "^2.4.1"
+  }
 }

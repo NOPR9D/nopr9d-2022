@@ -35,6 +35,20 @@ export class Zdog {
     });
   }
 
+  public addRect(
+    _illustration: string,
+    diameter: number,
+    stroke: number,
+    color: string
+  ) {
+    new Ellipse({
+      addTo: this.illustrations[_illustration].illustration,
+      diameter: diameter ?? 20,
+      stroke: stroke ?? 20,
+      color: color ?? "#636",
+    });
+  }
+
   public animate(ctx?: any) {
     Object.keys(this.illustrations).forEach((_illustration) => {
       if (ctx) {

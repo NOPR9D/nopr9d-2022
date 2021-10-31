@@ -4,9 +4,8 @@
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
-import Canvas from "@/components/Canvas.vue";
-import { Zdog } from "@/services/Zdog.ts";
-import { Illustration } from "zdog";
+import Canvas from "./components/Canvas.vue";
+import { Zdog } from "./services/Zdog.ts";
 
 @Options({
   components: { Canvas },

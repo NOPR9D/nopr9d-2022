@@ -4,7 +4,8 @@
   "description": "personnal website",
   "main": "index.js",
   "scripts": {
-    "start:front": "cd ./Front && npm run start"
+    "start:front": "cd ./Front && npm run start",
+    "start:back:node": "cd ./Back/nodejs && npm run start"
   },
   "repository": {
     "type": "git",

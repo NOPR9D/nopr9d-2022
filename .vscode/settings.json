@@ -1,5 +1,28 @@
 {
     "editor.formatOnSave": true,
     "prettier.enable": true,
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "workbench.colorCustomizations": {
+        "activityBar.activeBackground": "#5ee3ac",
+        "activityBar.activeBorder": "#ab5ce3",
+        "activityBar.background": "#5ee3ac",
+        "activityBar.foreground": "#15202b",
+        "activityBar.inactiveForeground": "#15202b99",
+        "activityBarBadge.background": "#ab5ce3",
+        "activityBarBadge.foreground": "#15202b",
+        "editorGroup.border": "#5ee3ac",
+        "panel.border": "#5ee3ac",
+        "sash.hoverBorder": "#5ee3ac",
+        "sideBar.border": "#5ee3ac",
+        "statusBar.background": "#33db96",
+        "statusBar.foreground": "#15202b",
+        "statusBarItem.hoverBackground": "#21ba7b",
+        "statusBarItem.remoteBackground": "#33db96",
+        "statusBarItem.remoteForeground": "#15202b",
+        "titleBar.activeBackground": "#33db96",
+        "titleBar.activeForeground": "#15202b",
+        "titleBar.inactiveBackground": "#33db9699",
+        "titleBar.inactiveForeground": "#15202b99"
+    },
+    "peacock.remoteColor": "#33db96"
 }

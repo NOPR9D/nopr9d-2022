@@ -1,6 +1,13 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 import store from "./store";
-import { Zdog } from "@/services/Zdog.ts";
+import { router } from "./router"
 
-createApp(App).use(store).mount("#app");
+const app = createApp(App)
+
+
+app.use(store)
+app.use(router)
+
+
+app.mount("#app");

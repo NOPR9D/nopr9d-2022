@@ -1,35 +1,37 @@
 <template>
-  <Canvas :title="'test'" />
+  <router-view></router-view>
 </template>
 
 <script lang="ts">
-import { Options, Vue } from "vue-class-component";
-import Canvas from "./components/Canvas.vue";
-import { Zdog } from "./services/Zdog.ts";
+import { Vue } from "vue-class-component";
 
-@Options({
-  components: { Canvas },
-
-  mounted() {
-    const dog = new Zdog();
-    dog.addIllustration("test", document.getElementById("test") as never);
-    dog.addElipse("test", 100, 50, null as never);
-    dog.setIllustrationFn("test", function (this: any) {
-      this.rotate.x += 0.3;
-    });
-    dog.animate();
-  },
-})
 export default class App extends Vue {}
 </script>
 
 <style>
+html,
+body {
+  height: 100%;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Lato, Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  color: white;
+  height: 100%;
+  width: 100%;
+  min-height: 100%;
+  min-width: 100%;
+  background: transparent;
+  position: absolute;
+  @extend .auto-size;
 }
 </style>

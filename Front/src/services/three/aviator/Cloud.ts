@@ -12,6 +12,9 @@ export class Cloud implements ThreeObject {
 
     constructor(colors: App['Colors']) {
         this.colors = colors
+        this.mesh = new Object3D()
+
+        this.mesh.name = "cloud"
 
         // create the geometry (shape) of the cylinder;
         // the parameters are: 
@@ -20,7 +23,6 @@ export class Cloud implements ThreeObject {
         this.material = new MeshPhongMaterial({
             color: this.colors.white,
         })
-        this.mesh = new Object3D()
 
         for (let i = 0; i < this.nBlocs; i++) {
             // create the mesh by cloning the geometry
@@ -43,6 +45,13 @@ export class Cloud implements ThreeObject {
     }
 
 
+
+    public rotate() {
+        this.mesh.children.forEach((children, index) => {
+            this.mesh.children[index].rotation.z += Math.random() * 0.005 * (index + 1)
+            this.mesh.children[index].rotation.y += Math.random() * 0.002 * (index + 1)
+        })
+    }
     public update(t: number) {
         //TODO
     }

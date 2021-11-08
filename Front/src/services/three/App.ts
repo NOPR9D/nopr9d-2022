@@ -12,10 +12,14 @@ export class App {
 
         window.addEventListener("resize", this.resize);
 
-        this.clock.start();
-        setTimeout(() => {
-            this.update.bind(this)();
-        }, 25)
+
+        this.view.init().then(() => {
+            this.clock.start();
+            setTimeout(() => {
+                this.update.bind(this)();
+            }, 250)
+        })
+
     }
 
     private resize = (): void => {

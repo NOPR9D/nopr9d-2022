@@ -1,9 +1,10 @@
 import { ThreeObject } from "src/interfaces";
-import { DirectionalLight, HemisphereLight } from "three";
+import { AmbientLight, DirectionalLight, HemisphereLight } from "three";
 
 export class Light implements ThreeObject {
     public hemisphereLight: HemisphereLight
     public shadowLight: DirectionalLight
+    public ambiantLight: AmbientLight
 
     constructor() {
         // A hemisphere light is a gradient colored light; 
@@ -15,7 +16,7 @@ export class Light implements ThreeObject {
         // It acts like the sun, that means that all the rays produced are parallel. 
         this.shadowLight = new DirectionalLight(0xffffff, .9);
 
-
+        this.ambiantLight = new AmbientLight(0xdc8874, .5);
         // Set the direction of the light  
         this.shadowLight.position.set(150, 350, 350);
 

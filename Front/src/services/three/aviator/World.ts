@@ -10,8 +10,6 @@ export class World implements ThreeObject {
 
     constructor(colors: App['Colors']) {
         this.colors = colors
-
-
         // create the geometry (shape) of the cylinder;
         // the parameters are: 
         // radius top, radius bottom, height, number of segments on the radius, number of segments vertically
@@ -30,6 +28,6 @@ export class World implements ThreeObject {
 
 
     public update(t: number) {
-        //TODO
+        this.mesh.rotation.z += .0025;
     }
 }

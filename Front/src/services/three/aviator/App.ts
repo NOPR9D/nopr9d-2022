@@ -1,5 +1,6 @@
 import { ThreeActualView } from "src/interfaces"
 import { Camera, Color, DirectionalLight, GridHelper, HemisphereLight, Scene, WebGLRenderer } from "three"
+import { normalize } from "../utils";
 import { AirPlane } from "./AirPlane";
 import { Light } from "./Light";
 import { Sky } from "./Sky";
@@ -19,7 +20,7 @@ export class App implements ThreeActualView {
     public scene: Scene
     public camera: Camera
     public cameraPosition = {
-        x: 0, y: 200, z: 200
+        x: 0, y: 100, z: 200
     }
 
     public fog: any
@@ -31,6 +32,7 @@ export class App implements ThreeActualView {
     public WIDTH: any
     public container: any
     public renderer: WebGLRenderer
+    public mousePosition: { x: number, y: number } = { x: 0, y: 0 }
 
     // My objects
     private light: undefined | Light
@@ -45,19 +47,15 @@ export class App implements ThreeActualView {
         this.init()
     }
 
-    public destroy() {
-        this.renderer.shadowMap.enabled = false
-    }
-
-    public init() {
-        this.renderer.shadowMap.enabled = true
+    public async init() {
+        this.createScene();
         // add the lights
         this.createLights();
         // add the objects
-        this.createPlane();
         this.createWorld();
+        await this.createPlane()
         this.createSky();
-        this.createScene();
+        document.addEventListener('mousemove', this.handleMouseMove.bind(this), false);
         // start a loop that will update the objects' positions 
         // and render the scene on each frame
 
@@ -81,14 +79,15 @@ export class App implements ThreeActualView {
         this.light = new Light()
         this.scene.add(this.light.hemisphereLight)
         this.scene.add(this.light.shadowLight)
+        this.scene.add(this.light.ambiantLight)
     };
 
     // add the objects
-    public createPlane() {
+    public async createPlane() {
         this.airPlaine = new AirPlane(this.Colors)
-        this.airPlaine.mesh.scale.set(.25, .25, .25);
-        this.airPlaine.mesh.position.y = 100;
-        this.scene.add(this.airPlaine.mesh);
+        await this.airPlaine.createAsync()
+
+        this.scene.add(this.airPlaine.mesh.scene);
     };
     public createWorld() {
         this.world = new World(this.Colors)
@@ -105,11 +104,31 @@ export class App implements ThreeActualView {
         console.log(vpW)
     }
 
+
+    public handleMouseMove(event: any) {
+        // here we are converting the mouse position value received 
+        // to a normalized value varying between -1 and 1;
+        // for the vertical axis, we need to inverse the formula 
+        // because the 2D y-axis goes the opposite direction of the 3D y-axis
+        this.mousePosition = { x: -1 + (event.clientX / window.innerWidth) * 2, y: 1 - (event.clientY / window.innerHeight) * 2 };
+
+    }
+
     public update(t: number): void {
         if (this.airPlaine && this.world && this.sky) {
-            this.airPlaine.propeller.rotation.x += 0.3;
-            this.world.mesh.rotation.z += .005;
-            this.sky.mesh.rotation.z += .01;
+            const targetY = normalize(this.mousePosition.y, -.75, .75, 25, 175);
+            const targetX = normalize(this.mousePosition.x, -.75, .75, -100, 100);
+            this.updateCameraFov()
+            this.airPlaine.update(t, targetX, targetY)
+            this.world.update(t)
+            this.sky.update(t)
         }
     }
+
+
+    public updateCameraFov() {
+        (this.camera as any).fov = normalize(this.mousePosition.x, -1, 1, 40, 80);
+        (this.camera as any).updateProjectionMatrix();
+    }
+
 }

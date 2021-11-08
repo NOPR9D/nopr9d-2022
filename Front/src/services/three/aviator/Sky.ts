@@ -8,6 +8,7 @@ export class Sky implements ThreeObject {
     public nClouds = 20
     public stepAngle = Math.PI * 2 / this.nClouds;
     private colors: App['Colors']
+    public clouds: Cloud[] = []
 
 
     constructor(colors: App['Colors']) {
@@ -34,12 +35,21 @@ export class Sky implements ThreeObject {
             const s = 1 + Math.random() * 2;
             c.mesh.scale.set(s, s, s);
             // do not forget to add the mesh of each cloud in the scene
+            this.clouds.push(c)
             this.mesh.add(c.mesh);
+
         }
     }
 
 
     public update(t: number) {
-        //TODO
+        this.mesh.rotation.z += .005
+        this.moveClouds()
+    }
+
+    public moveClouds() {
+        this.clouds.forEach((cloud, index) => {
+            this.clouds[index].rotate()
+        })
     }
 }

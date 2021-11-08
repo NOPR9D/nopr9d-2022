@@ -10,6 +10,7 @@ export class App implements ThreeActualView {
         this.scene = scene
         this.camera = camera
     }
+    public async init() { console.log('hi') }
 
     public resize(vpW: number, vpH: number): void {
         console.log(vpW)

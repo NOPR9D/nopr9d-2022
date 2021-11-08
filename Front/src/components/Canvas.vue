@@ -5,9 +5,14 @@
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 
+import { App as ThreeApp } from "./../services/three";
+
 @Options({
   props: {
     title: { type: String },
+  },
+  mounted() {
+    new ThreeApp();
   },
 })
 export default class Canvas extends Vue {}

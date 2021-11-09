@@ -1,22 +1,19 @@
 import { ThreeObject } from "src/interfaces";
 import { Object3D } from "three";
-import { App } from "./App";
 import { Cloud } from "./Cloud";
 
-export class Sky implements ThreeObject {
+export class Sky {
     public mesh: Object3D
     public nClouds = 20
     public stepAngle = Math.PI * 2 / this.nClouds;
-    private colors: App['Colors']
     public clouds: Cloud[] = []
 
 
-    constructor(colors: App['Colors']) {
-        this.colors = colors
+    constructor(colors: any) {
         this.mesh = new Object3D()
         // create the clouds
         for (let i = 0; i < this.nClouds; i++) {
-            const c = new Cloud(this.colors);
+            const c = new Cloud(colors);
             // set the rotation and the position of each cloud;
             // for that we use a bit of trigonometry
             const a = this.stepAngle * i; // this is the final angle of the cloud
@@ -37,14 +34,7 @@ export class Sky implements ThreeObject {
             // do not forget to add the mesh of each cloud in the scene
             this.clouds.push(c)
             this.mesh.add(c.mesh);
-
         }
-    }
-
-
-    public update(t: number) {
-        this.mesh.rotation.z += .005
-        this.moveClouds()
     }
 
     public moveClouds() {

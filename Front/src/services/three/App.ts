@@ -9,16 +9,10 @@ export class App {
         const canvasBox = <HTMLCanvasElement>document.getElementById("webgl-canvas");
         this.view = new View(canvasBox);
         this.clock = new Clock(false);
-
+        this.clock.start();
+        this.resize()
+        this.update.bind(this)();
         window.addEventListener("resize", this.resize);
-
-
-        this.view.init().then(() => {
-            this.clock.start();
-            setTimeout(() => {
-                this.update.bind(this)();
-            }, 250)
-        })
 
     }
 

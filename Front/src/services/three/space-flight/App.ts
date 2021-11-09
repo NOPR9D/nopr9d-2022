@@ -1,7 +1,6 @@
-import { ThreeActualView } from "src/interfaces"
 import { Camera, Scene } from "three"
 
-export class App implements ThreeActualView {
+export class App {
 
     public scene: Scene
     public camera: Camera

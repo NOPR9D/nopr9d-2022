@@ -34,7 +34,7 @@ export class Sound implements ThreeObject {
         })
     }
 
-    private ftt() {
+    public ftt() {
         // node to the analyser
         const dataArray = this.audioAnalyser.getFrequencyData();
         console.log(dataArray)
@@ -52,12 +52,7 @@ export class Sound implements ThreeObject {
         const lowerMaxFr = lowerMax / lowerHalfArray.length;
         const lowerAvgFr = lowerAvg / lowerHalfArray.length;
         const upperAvgFr = upperAvg / upperHalfArray.length;
-        console.log(lowerAvg)
-        console.log(lowerMax)
-        console.log(upperAvg)
-        console.log(lowerMaxFr)
-        console.log(lowerAvgFr)
-        console.log(upperAvgFr)
+
         return {
             lowerAvg,
             lowerAvgFr,
@@ -70,13 +65,10 @@ export class Sound implements ThreeObject {
             upperHalfArray,
             upperHalfArrayAvg
         }
-
-
     }
 
 
     public update(t: number) {
-        // Nothing to do
         this.ftt()
     }
 }

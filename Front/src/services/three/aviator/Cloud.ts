@@ -1,29 +1,22 @@
-import { ThreeObject } from "src/interfaces";
-import { BoxGeometry, Mesh, MeshPhongMaterial, Object3D } from "three";
-import { App } from "./App";
+import { BoxBufferGeometry, BoxGeometry, Mesh, MeshPhongMaterial } from "three";
 
-export class Cloud implements ThreeObject {
+export class Cloud {
     public geom: BoxGeometry
-    public mesh: Object3D
+    public mesh: Mesh
     public material: MeshPhongMaterial
     public nBlocs = 3 + Math.floor(Math.random() * 3)
-    private colors: App['Colors']
 
 
-    constructor(colors: App['Colors']) {
-        this.colors = colors
-        this.mesh = new Object3D()
-
+    constructor(colors: any) {
+        this.mesh = new Mesh()
         this.mesh.name = "cloud"
-
         // create the geometry (shape) of the cylinder;
         // the parameters are: 
         // radius top, radius bottom, height, number of segments on the radius, number of segments vertically
-        this.geom = new BoxGeometry(20, 20, 20)
+        this.geom = new BoxBufferGeometry(20, 20, 20)
         this.material = new MeshPhongMaterial({
-            color: this.colors.white,
+            color: colors.white, flatShading: true
         })
-
         for (let i = 0; i < this.nBlocs; i++) {
             // create the mesh by cloning the geometry
             const m = new Mesh(this.geom, this.material);
@@ -43,16 +36,10 @@ export class Cloud implements ThreeObject {
             this.mesh.add(m);
         }
     }
-
-
-
     public rotate() {
         this.mesh.children.forEach((children, index) => {
             this.mesh.children[index].rotation.z += Math.random() * 0.005 * (index + 1)
             this.mesh.children[index].rotation.y += Math.random() * 0.002 * (index + 1)
         })
-    }
-    public update(t: number) {
-        //TODO
     }
 }

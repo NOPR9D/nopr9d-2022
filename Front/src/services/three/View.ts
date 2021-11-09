@@ -6,7 +6,7 @@
  */
 
 import { ThreeActualView } from "src/interfaces";
-import { PerspectiveCamera, Scene, WebGLRenderer, CameraHelper } from "three";
+import { PerspectiveCamera, Scene, WebGLRenderer, CameraHelper, Color } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { App as SpaceFlight } from './space-flight'
 import { App as Aviator } from './aviator'
@@ -16,17 +16,21 @@ export default class View {
     private renderer: WebGLRenderer;
     private scene: Scene;
     private camera: PerspectiveCamera;
-    private helper: CameraHelper
+    // private helper: CameraHelper
 
-    private actualView: ThreeActualView;
+    private actualView: any;
 
     constructor(canvasElem: HTMLCanvasElement) {
 
         this.renderer = new WebGLRenderer({
-            canvas: canvasElem, antialias: true
+            canvas: canvasElem,
+            antialias: true,
+            powerPreference: 'high-performance',
+            preserveDrawingBuffer: false,
+            stencil: false,
         });
         this.renderer.setPixelRatio(window.devicePixelRatio);
-        this.renderer.setClearColor(0x0000FF, 1);
+        this.renderer.setClearColor('white', 1);
         this.renderer.shadowMap.enabled = true
         const fov = 45;
         const aspect = window.innerWidth / window.innerHeight;
@@ -34,20 +38,14 @@ export default class View {
         const far = 100;
         this.camera = new PerspectiveCamera(fov, aspect, near, far);
         // const controls = new OrbitControls(this.camera, this.renderer.domElement);
-        this.helper = new CameraHelper(this.camera)
+        // this.helper = new CameraHelper(this.camera)
         this.scene = new Scene();
+        this.scene.background = new Color(0x0000FF)
 
         this.actualView = this.initAviator()
+
+        this.actualView.engine.init()
     }
-
-    public async init() {
-        return this.actualView.init().then(() =>
-            this.onWindowResize(window.innerWidth, window.innerHeight)
-        )
-        // this.scene.add(this.helper)
-
-    }
-
 
     public initAviator() {
         return new Aviator(this.scene, this.camera, this.renderer)
@@ -61,15 +59,17 @@ export default class View {
         this.renderer.setSize(vpW, vpH);
         this.camera.aspect = vpW / vpH;
         this.camera.updateProjectionMatrix();
-        if (this.actualView) {
-            this.actualView.resize(vpW, vpH)
-        }
+        // if (this.actualView) {
+        //     this.actualView.engine.resize(vpW, vpH)
+        // }
     }
 
     public update(secs: number): void {
-        if (this.actualView) {
-            this.actualView.update(secs)
+        if (this.actualView.engine.ready) {
+            this.actualView.engine.update(secs)
         }
+        this.renderer.clear()
+
         this.renderer.render(this.scene, this.camera);
     }
 }

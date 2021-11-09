@@ -1,9 +1,4 @@
-import { Camera, Scene } from "three";
-
+import { Engine } from "src/services/three/aviator/Engine";
 export interface ThreeActualView {
-    scene: Scene
-    camera: Camera
-    init(): Promise<any>
-    resize(vpW: number, vpH: number): void
-    update(t: number): void
+    engine: Engine
 }

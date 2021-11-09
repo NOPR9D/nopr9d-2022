@@ -1,9 +1,10 @@
 import { ThreeActualView } from "src/interfaces"
-import { Camera, Color, DirectionalLight, GridHelper, HemisphereLight, Scene, WebGLRenderer } from "three"
+import { Camera, AudioAnalyser, Scene, WebGLRenderer, Audio, AudioListener, AudioLoader } from "three"
 import { normalize } from "../utils";
 import { AirPlane } from "./AirPlane";
 import { Light } from "./Light";
 import { Sky } from "./Sky";
+import { Sound } from "./Sound";
 import { World } from "./World";
 
 export class App implements ThreeActualView {
@@ -39,11 +40,13 @@ export class App implements ThreeActualView {
     private world: undefined | World
     private airPlaine: undefined | AirPlane
     private sky: undefined | Sky
+    private sound: Sound
 
     constructor(scene: Scene, camera: Camera, renderer: WebGLRenderer) {
         this.scene = scene
         this.camera = camera
         this.renderer = renderer
+        this.sound = new Sound()
         this.init()
     }
 
@@ -56,8 +59,17 @@ export class App implements ThreeActualView {
         await this.createPlane()
         this.createSky();
         document.addEventListener('mousemove', this.handleMouseMove.bind(this), false);
-        // start a loop that will update the objects' positions 
-        // and render the scene on each frame
+        await this.createAudio()
+        this.play()
+    }
+
+    public async createAudio() {
+        await this.sound.load()
+        this.camera.add(this.sound.audioListener)
+    }
+
+    public play() {
+        this.sound.audio.play()
 
     }
 

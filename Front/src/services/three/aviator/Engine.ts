@@ -1,4 +1,4 @@
-import { ThreeObject } from "src/interfaces";
+import { EngineBluePrint, ThreeObject } from "src/interfaces";
 import { PerspectiveCamera, Scene, WebGLRenderer } from "three";
 import { normalize } from "../utils";
 import { AirPlane } from "./AirPlane";
@@ -9,7 +9,7 @@ import { Sky } from "./Sky";
 import { Sound } from "./Sound";
 import { World } from "./World";
 
-export class Engine implements ThreeObject {
+export class Engine implements ThreeObject, EngineBluePrint {
     public ready = false
 
     public colors = {
@@ -114,14 +114,13 @@ export class Engine implements ThreeObject {
     public airPlaine!: AirPlane
     public sky!: Sky
     public sound!: Sound
-    public engine!: Engine
 
     // Scene settings
     public fog: any
-    public fieldOfView: any = 50
-    public aspectRatio: any = window.innerWidth / window.innerHeight
-    public nearPlane: any = .1
-    public farPlane: any = 10000
+    public fieldOfView = 50
+    public aspectRatio: number = window.innerWidth / window.innerHeight
+    public nearPlane = .1
+    public farPlane = 10000
 
     public importSceneCameraRenderer(scene: Scene, camera: PerspectiveCamera, renderer: WebGLRenderer) {
         this.scene = scene

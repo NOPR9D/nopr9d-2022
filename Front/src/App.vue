@@ -4,8 +4,12 @@
 
 <script lang="ts">
 import { Vue } from "vue-class-component";
-
-export default class App extends Vue {}
+import {initShape} from '@/services/mojs'
+export default class App extends Vue {
+  mounted(){
+    initShape()
+  }
+}
 </script>
 
 <style>
@@ -18,6 +22,7 @@ body {
   display: flex;
   overflow: hidden;
   flex-direction: column;
+  background: grey;
 }
 
 #app {

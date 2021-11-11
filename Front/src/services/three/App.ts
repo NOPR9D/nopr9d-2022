@@ -21,7 +21,7 @@ export class App {
     }
 
     private update() {
-        this.view.update(this.clock.getElapsedTime() / 1000);
+        this.view.update(this.clock.getElapsedTime() / 1000, this.clock.getDelta());
         requestAnimationFrame(this.update.bind(this));
     }
 }

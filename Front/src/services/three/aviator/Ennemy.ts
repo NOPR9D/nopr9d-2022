@@ -26,7 +26,7 @@ export class Ennemy implements ThreeObject {
 
 
 
-    public update(t: number): void { }
+    public update(t: number): void { console.log('update') }
 
 
 }

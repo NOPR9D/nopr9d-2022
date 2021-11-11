@@ -1,4 +1,5 @@
-import { Engine } from "src/services/three/aviator/Engine";
+import { EngineBluePrint } from ".";
+
 export interface ThreeActualView {
-    engine: Engine
+    engine: EngineBluePrint
 }

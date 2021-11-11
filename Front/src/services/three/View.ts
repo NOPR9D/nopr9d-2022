@@ -10,6 +10,7 @@ import { PerspectiveCamera, Scene, WebGLRenderer, CameraHelper, Color } from "th
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { App as SpaceFlight } from './space-flight'
 import { App as Aviator } from './aviator'
+import { App as InteractiveParticles } from './interactive-particles'
 
 
 export default class View {
@@ -42,9 +43,14 @@ export default class View {
         this.scene = new Scene();
         this.scene.background = new Color(0x0000FF)
 
-        this.actualView = this.initAviator()
+        // this.actualView = this.initAviator()
+        this.actualView = this.initInteractiveParticles()
 
         this.actualView.engine.init()
+    }
+
+    public initInteractiveParticles() {
+        return new InteractiveParticles(this.scene, this.camera, this.renderer)
     }
 
     public initAviator() {
@@ -64,9 +70,9 @@ export default class View {
         // }
     }
 
-    public update(secs: number): void {
+    public update(secs: number, delta: number): void {
         if (this.actualView.engine.ready) {
-            this.actualView.engine.update(secs)
+            this.actualView.engine.update(secs, delta)
         }
         this.renderer.clear()
 

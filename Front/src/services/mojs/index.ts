@@ -325,21 +325,28 @@ export function intro(id:string) {
             }
         }
     });
+    // timeline
+    //     .add(
+    //         mCharacter,
+    //         yCharacter,
+    //         LCharacter,
+    //         aCharacter,
+    //         bCharacter,
+    //         zCharacter,
+    //         largeBeaker,
+    //         largeBeakerContent,
+    //         underlines,
+    //         line1,
+    //         line2,
+    //         line3,
+    //     );
+
+
     timeline
-        .add(
-            mCharacter,
-            yCharacter,
-            LCharacter,
-            aCharacter,
-            bCharacter,
-            zCharacter,
-            largeBeaker,
-            largeBeakerContent,
-            underlines,
-            line1,
-            line2,
-            line3,
-        );
+    .add(
+        largeBeaker,
+        largeBeakerContent,
+    );
 
     timeline.play()
 

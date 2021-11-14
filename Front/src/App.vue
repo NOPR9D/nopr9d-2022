@@ -11,6 +11,8 @@ export default class App extends Vue {
   mounted(){
     initShape()
   }
+
+
 }
 </script>
 

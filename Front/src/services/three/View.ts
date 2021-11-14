@@ -11,6 +11,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { App as SpaceFlight } from './space-flight'
 import { App as Aviator } from './aviator'
 import { App as InteractiveParticles } from './interactive-particles'
+import { App as AppIntro } from './intro'
 
 
 export default class View {
@@ -44,11 +45,15 @@ export default class View {
         this.scene.background = new Color(0x0000FF)
 
         // this.actualView = this.initAviator()
-        this.actualView = this.initInteractiveParticles()
+        // this.actualView = this.initInteractiveParticles()
+        this.actualView = this.initAppIntro()
 
         this.actualView.engine.init()
     }
 
+    public initAppIntro(){
+        return new AppIntro(this.scene, this.camera, this.renderer)
+    }
     public initInteractiveParticles() {
         return new InteractiveParticles(this.scene, this.camera, this.renderer)
     }

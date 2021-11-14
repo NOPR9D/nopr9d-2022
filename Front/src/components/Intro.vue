@@ -7,17 +7,25 @@
         </div>
       </div>
     </div>
+    <div class="row">
+      
+  <Canvas :title="'webgl-canvas'" />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import { intro } from "@/services/mojs";
+import Canvas from "./../components/Canvas.vue";
+import { App as introThreeJs } from "@/services/three";
 
 @Options({
+    components: { Canvas },
   props: {},
   mounted() {
-    intro("intro_reveal");
+    // intro("intro_reveal");
+    new introThreeJs()
   },
 })
 export default class Intro extends Vue {}

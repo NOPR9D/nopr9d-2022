@@ -1,9 +1,7 @@
 <template>
-  <div>
     <Header />
     <Intro />
     <Content />
-  </div>
 </template>
 
 <script lang="ts">

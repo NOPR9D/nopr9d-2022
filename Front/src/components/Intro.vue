@@ -1,6 +1,12 @@
-<template>
-  <div class="intro_wrap">
-    <div class="intro_reveal" id="intro_reveal"></div>
+<template >
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="intro_wrap">
+          <div class="intro_reveal" id="intro_reveal"></div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -11,7 +17,7 @@ import { intro } from "@/services/mojs";
 @Options({
   props: {},
   mounted() {
-    intro();
+    intro("intro_reveal");
   },
 })
 export default class Intro extends Vue {}
@@ -29,9 +35,24 @@ export default class Intro extends Vue {}
   height: 100px;
   width: 100%;
   z-index: 2;
-
 }
-.intro_reveal >   * > svg{
-    overflow: visible;
-  }
+.intro_reveal > * > svg {
+  overflow: visible;
+}
+
+.beaker_wrap {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.beaker_reveal {
+  position: absolute;
+  height: 100px;
+  width: 100%;
+  z-index: 2;
+}
+.beaker_reveal > * > svg {
+  overflow: visible;
+}
 </style>

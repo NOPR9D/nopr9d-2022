@@ -1,5 +1,7 @@
 <template>
-  <router-view></router-view>
+<div class="container-fluid">
+  <router-view ></router-view>
+</div>
 </template>
 
 <script lang="ts">
@@ -12,7 +14,10 @@ export default class App extends Vue {
 }
 </script>
 
-<style>
+<style lang="scss">
+
+@import './assets/bootstrap5/bootstrap-grid';
+@import './assets/bootstrap5/bootstrap-utilities';
 html,
 body {
   height: 100%;
@@ -38,5 +43,10 @@ body {
   background: transparent;
   position: absolute;
   @extend .auto-size;
+}
+
+.auto-size {
+  display: flex !important;
+  flex-grow: 1;
 }
 </style>

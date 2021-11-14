@@ -70,7 +70,7 @@ export class Engine implements ThreeObject, EngineBluePrint {
         await this.animation.loadAsync()
         await this.createUser()
         this.ready = true
-        this.play()
+        // this.play()
         document.addEventListener('mousemove', this.handleMouseMove.bind(this), false);
     }
 
@@ -93,6 +93,7 @@ export class Engine implements ThreeObject, EngineBluePrint {
     public async createUser() {
         const _user = new User()
         await _user.createAsync()
+        console.log(this.animation.animationAction)
         this.user = _user
         this.user.mixer.clipAction(this.animation.animationAction[0].getClip()).play()
         this.scene.add(this.user.mesh)

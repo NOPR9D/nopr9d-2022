@@ -5,8 +5,8 @@
  * Controls scene, cam, renderer, and objects in scene.
  */
 
-import { ThreeActualView } from "src/interfaces";
-import { PerspectiveCamera, Scene, WebGLRenderer, CameraHelper, Color } from "three";
+import { EngineBluePrint, ThreeActualView } from "src/interfaces";
+import { PerspectiveCamera, Scene, WebGLRenderer, CameraHelper, Color, LoadingManager } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { App as SpaceFlight } from './space-flight'
 import { App as Aviator } from './aviator'
@@ -20,7 +20,11 @@ export default class View {
     private camera: PerspectiveCamera;
     // private helper: CameraHelper
 
-    private actualView: any;
+    public actualView: {
+        [key: string]: any,
+        ready: boolean,
+        engine: EngineBluePrint
+    };
 
     constructor(canvasElem: HTMLCanvasElement) {
 
@@ -47,11 +51,9 @@ export default class View {
         // this.actualView = this.initAviator()
         // this.actualView = this.initInteractiveParticles()
         this.actualView = this.initAppIntro()
-
-        this.actualView.engine.init()
     }
 
-    public initAppIntro(){
+    public initAppIntro() {
         return new AppIntro(this.scene, this.camera, this.renderer)
     }
     public initInteractiveParticles() {

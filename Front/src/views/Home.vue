@@ -1,7 +1,5 @@
 <template>
-    <Header />
     <Intro />
-    <Content />
 </template>
 
 <script lang="ts">

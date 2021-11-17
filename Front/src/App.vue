@@ -29,7 +29,7 @@ body {
   display: flex;
   overflow: hidden;
   flex-direction: column;
-  background: grey;
+  background: black;
 }
 
 #app {

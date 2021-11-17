@@ -1,4 +1,5 @@
-import { CustomShape, addShape, Shape, easing, Timeline, stagger, h, ShapeOptions } from '@mojs/core';
+import { CustomShape, addShape, Shape, easing, Timeline, stagger, h, ShapeOptions, Burst, Tween } from '@mojs/core';
+import { AnimatedIcon } from './AnimatedIcon';
 import { increase, scale } from './utils'
 const COLORS = {
     white: '#ffffff',
@@ -349,7 +350,70 @@ export function intro(id:string) {
     );
 
     timeline.play()
+}
 
-
-
+export const animatedLicorne = ():AnimatedIcon=>{
+const svgDiv =  document.getElementById('hey_im_a_licorn');
+const svgRaw :SVGSVGElement = svgDiv?.querySelector('svg') as SVGSVGElement  ;
+const translationCurve = easing.path('M0,100 C0,72 10,-0.1 50,0 C89.6,0.1 100,72 100,100');
+return new AnimatedIcon(svgDiv as HTMLElement, {
+    tweens : [
+        // burst animation (line1)
+        new Burst({
+            parent: svgDiv as HTMLElement,
+            left: '65%', top: '40%',
+            count: 		5,
+            //eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              //@ts-ignore
+            radius: 	{40:120},
+            angle: 		69,
+            degree:   17,
+            children: {
+                shape: 				'line',
+                scale: 				1,	
+                radius: 			{20:0},
+                stroke: 			['#bf62a6', '#f28c33', '#f5d63d', '#79c267', '#78c5d6'],
+                duration: 		600,
+                easing: 			mojs.easing.bezier(0.1, 1, 0.3, 1)
+            },
+        }),
+        // burst animation (circles)
+        new Burst({
+            parent: svgDiv as HTMLElement,
+            left: '65%', top: '40%',
+            count: 		4,
+            //eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            //@ts-ignore
+            radius: 	{20:50},
+            degree: 	20,
+            angle: 		70,
+            opacity: 	0.6,
+            children: {
+                fill: 			['#bf62a6','#f28c33','#f5d63d','#79c267','#78c5d6'],
+                scale: 			1,
+                radius: 		{'rand(5,20)':0},
+                isSwirl: 		true,
+                swirlSize: 	4,
+                duration: 	1600,
+                delay: 			[0,350,200,150,400],
+                easing: 		mojs.easing.bezier(0.1, 1, 0.3, 1)
+            }
+        }),
+        // icon scale animation
+        new Tween({
+            duration : 800,
+            easing: mojs.easing.bezier(0.1, 1, 0.3, 1),
+            onUpdate: function(progress) {
+                const translationProgress = translationCurve(progress);
+                    svgRaw.style.transform = 'translate3d(' + -20 * translationProgress + '%,0,0)';	
+            }
+        })
+    ],
+    onCheck : function() {
+        svgRaw.style.fill = '#F198CA';
+    },
+    onUnCheck : function() {
+        svgRaw.style.fill = '#C0C1C3';
+    }
+});
 }

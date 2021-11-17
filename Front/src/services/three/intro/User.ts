@@ -11,16 +11,16 @@ export class User {
     private loadingManager: LoadingManager
 
 
-    constructor() {
-        this.loadingManager = new LoadingManager();
+    constructor(loadingManager: LoadingManager) {
+        this.loadingManager = loadingManager
         this.loader = new FBXLoader(this.loadingManager);
     }
 
     public createAsync() {
         return new Promise((res, err) => {
             this.loader.load('/three/MaleBot.fbx', (gltf) => {
-                gltf.scale.set(1, 1, 1)
-                gltf.position.set(-200, 0, 0)
+                gltf.scale.set(0.5, 0.5, 0.5)
+                gltf.position.set(0, 0, 0)
                 gltf.traverse(child => {
                     if (child.isObject3D) {
                         child.receiveShadow = true
@@ -30,17 +30,8 @@ export class User {
                 this.mesh = gltf
                 this.mixer = new AnimationMixer(gltf)
                 res(true)
-            },
                 // called while loading is progressing
-                (xhr) => {
-                    console.log((xhr.loaded / xhr.total * 100) + '% loaded')
-                },
-                // called when loading has errors
-                (error) => {
-                    console.log(error)
-                    console.log('An error happened');
-                    err(false)
-                })
+            })
         })
     }
 }

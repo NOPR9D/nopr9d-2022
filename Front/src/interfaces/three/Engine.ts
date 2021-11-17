@@ -1,9 +1,10 @@
-import { PerspectiveCamera, Scene, WebGLRenderer } from "three";
+import { LoadingManager, PerspectiveCamera, Scene, WebGLRenderer } from "three";
 
 export interface EngineBluePrint {
     scene: Scene
+    loadingManager: LoadingManager
     camera: PerspectiveCamera
-    renderer: WebGLRenderer
+    renderer?: WebGLRenderer
     ready: boolean
     fieldOfView: number
     aspectRatio: number
@@ -14,7 +15,7 @@ export interface EngineBluePrint {
         y: number;
         z: number;
     }
-    importSceneCameraRenderer(scene: Scene, camera: PerspectiveCamera, renderer: WebGLRenderer): this
+    importSceneCameraRenderer(scene: Scene, camera: PerspectiveCamera, renderer?: WebGLRenderer): this
     init(): Promise<void>
     createScene(): void
     createWorld(): void

@@ -1,27 +1,31 @@
-import { Clock } from "three";
+import { Clock, LoadingManager } from "three";
 import View from "./View";
 
 export class App {
-    private view: View;
-    private clock: Clock
+    public view: View;
+    public clock!: Clock;
+    public loadingManager!: LoadingManager
+    public progressLoaded = 0
 
     constructor() {
         const canvasBox = <HTMLCanvasElement>document.getElementById("webgl-canvas");
         this.view = new View(canvasBox);
-        this.clock = new Clock(false);
-        this.clock.start();
-        this.resize()
-        this.update.bind(this)();
-        window.addEventListener("resize", this.resize);
-
     }
 
-    private resize = (): void => {
+    public initClock(){
+        this.clock = new Clock(false);
+        this.clock.start();
+    }
+
+    public resize = (): void => {
         this.view.onWindowResize(window.innerWidth, window.innerHeight);
     }
 
-    private update() {
-        this.view.update(this.clock.getElapsedTime() / 1000, this.clock.getDelta());
+    public update() {
+        if (this.view.actualView.ready) {
+            this.view.update(this.clock.getElapsedTime() / 1000, this.clock.getDelta());
+        }
         requestAnimationFrame(this.update.bind(this));
     }
+
 }

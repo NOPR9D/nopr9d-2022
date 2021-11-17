@@ -8202,6 +8202,11 @@
   "resolved" "https://registry.npmjs.org/signal-exit/-/signal-exit-3.0.5.tgz"
   "version" "3.0.5"
 
+"simple-html-tokenizer@^0.1.1":
+  "integrity" "sha1-BcLuxXn//+FFoDCsJs/qYbmA+r4="
+  "resolved" "https://registry.npmjs.org/simple-html-tokenizer/-/simple-html-tokenizer-0.1.1.tgz"
+  "version" "0.1.1"
+
 "simple-swizzle@^0.2.2":
   "integrity" "sha1-pNprY1/8zMoz9w0Xy5JZLeleVXo="
   "resolved" "https://registry.npmjs.org/simple-swizzle/-/simple-swizzle-0.2.2.tgz"
@@ -8672,6 +8677,15 @@
   "version" "7.2.0"
   dependencies:
     "has-flag" "^4.0.0"
+
+"svg-inline-loader@^0.8.2":
+  "integrity" "sha512-kbrcEh5n5JkypaSC152eGfGcnT4lkR0eSfvefaUJkLqgGjRQJyKDvvEE/CCv5aTSdfXuc+N98w16iAojhShI3g=="
+  "resolved" "https://registry.npmjs.org/svg-inline-loader/-/svg-inline-loader-0.8.2.tgz"
+  "version" "0.8.2"
+  dependencies:
+    "loader-utils" "^1.1.0"
+    "object-assign" "^4.0.1"
+    "simple-html-tokenizer" "^0.1.1"
 
 "svg-tags@^1.0.0":
   "integrity" "sha1-WPcc7jvVGbWdSyqEO2x95krAR2Q="

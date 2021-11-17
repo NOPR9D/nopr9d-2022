@@ -1,15 +1,14 @@
 import { EngineBluePrint, ThreeObject } from "src/interfaces";
-import { PerspectiveCamera, Scene, WebGLRenderer } from "three";
+import { Color, LoadingManager, PerspectiveCamera, Scene, WebGLRenderer } from "three";
 import { normalize } from "../utils";
 import { Animation } from "./Animation";
-import { EnnemiesHolder } from "./EnnemiesHolder";
-import { Ennemy } from "./Ennemy";
 import { Light } from "./Light";
 import { User } from "./User";
 import { World } from "./World";
 
 export class Engine implements ThreeObject, EngineBluePrint {
     public ready = false
+    public loadingManager: LoadingManager = new LoadingManager();
 
     public colors = {
         red: 0xf25346,
@@ -18,13 +17,14 @@ export class Engine implements ThreeObject, EngineBluePrint {
         pink: 0xF5986E,
         brownDark: 0x23190f,
         blue: 0x68c3c0,
+        black: 0x000000
     };
 
     public scene !: Scene
     public camera !: PerspectiveCamera
-    public renderer!: WebGLRenderer
+    public renderer!:WebGLRenderer
     public cameraPosition = {
-        x: 0, y: 100, z: 200
+        x: 0, y: 100, z: 500
     }
 
     public status = "playing";
@@ -32,8 +32,6 @@ export class Engine implements ThreeObject, EngineBluePrint {
     public deltaTime = 0;
     public newTime = new Date().getTime();
     public oldTime = new Date().getTime();
-    public ennemiesPool: Ennemy[] = [];
-    public ennemiesHolder!: EnnemiesHolder;
     public mousePosition: { x: number, y: number } = { x: 0, y: 0 }
     public mouseTarget: { x: number, y: number } = { x: 0, y: 0 }
 
@@ -46,32 +44,38 @@ export class Engine implements ThreeObject, EngineBluePrint {
     public fog: any
     public fieldOfView = 50
     public aspectRatio: number = window.innerWidth / window.innerHeight
-    public nearPlane =0.1
+    public nearPlane = 0.1
     public farPlane = 10000
 
     public animation!: Animation
 
-    public importSceneCameraRenderer(scene: Scene, camera: PerspectiveCamera, renderer: WebGLRenderer) {
+    public importSceneCameraRenderer(scene: Scene, camera: PerspectiveCamera,renderer?:WebGLRenderer) {
         this.scene = scene
         this.camera = camera
-        this.renderer = renderer
         return this;
     }
 
+
+    public resolveAnimation() {
+        this.animation.addAnimationToResolve('Thriller_Part_1.fbx', "thriller_1")
+        this.animation.addAnimationToResolve('Thriller_Part_2.fbx', "thriller_2")
+        this.animation.addAnimationToResolve('Thriller_Part_3.fbx', "thriller_3")
+        this.animation.addAnimationToResolve('Thriller_Part_4.fbx', "thriller_4")
+    }
+
     public async init() {
-        this.animation = new Animation()
-        this.ennemiesHolder = new EnnemiesHolder()
+        this.scene.background = new Color(this.colors.black)
+        this.animation = new Animation(this.loadingManager)
         this.createScene();
         // add the lights
         this.createLights();
         // add the objects
-        // this.createWorld();
-        this.animation.addAnimationToResolve('Thriller_Part_1.fbx')
+        this.createWorld();
+        this.resolveAnimation()
         await this.animation.loadAsync()
         await this.createUser()
         this.ready = true
         // this.play()
-        document.addEventListener('mousemove', this.handleMouseMove.bind(this), false);
     }
 
     public play() {
@@ -91,10 +95,9 @@ export class Engine implements ThreeObject, EngineBluePrint {
     };
 
     public async createUser() {
-        const _user = new User()
-        await _user.createAsync()
-        console.log(this.animation.animationAction)
-        this.user = _user
+        this.user = new User(this.loadingManager)
+        await this.user.createAsync()
+        this.user.mixer.timeScale = 1 / 3;
         this.user.mixer.clipAction(this.animation.animationAction[0].getClip()).play()
         this.scene.add(this.user.mesh)
     }
@@ -115,12 +118,10 @@ export class Engine implements ThreeObject, EngineBluePrint {
     };
 
     public update(t: number) {
-        this.mouseTarget.y = normalize(this.mousePosition.y, -.75, .75, 25, 175);
-        this.mouseTarget.x = normalize(this.mousePosition.x, -.75, .75, -100, 100);
         // this.updateWorld()
-       if(this.user){
-        this.user.mixer.update(t)
-       }
+        if (this.user) {
+            this.user.mixer.update(t)
+        }
     }
 
     public updateCameraFov() {
@@ -132,21 +133,6 @@ export class Engine implements ThreeObject, EngineBluePrint {
     public updateWorld() {
         this.world.mesh.rotation.z += .0025;
     }
-
-    // public createCoins() { }
-    public createEnnemies() {
-        for (let i = 0; i < 10; i++) {
-            const ennemy = new Ennemy(this.colors.red);
-            this.ennemiesPool.push(ennemy);
-        }
-        this.ennemiesHolder = new EnnemiesHolder();
-        //ennemiesHolder.mesh.position.y = -game.seaRadius;
-        this.scene.add(this.ennemiesHolder.mesh)
-    }
-
-
-    // public createParticles() { }
-
 
     public handleMouseMove(event: any) {
         // here we are converting the mouse position value received 

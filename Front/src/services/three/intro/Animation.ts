@@ -6,16 +6,13 @@ import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader";
 export class Animation implements ThreeObject {
     public animationAction: AnimationAction[] = []
     private loader: FBXLoader
-    private loadingManager: LoadingManager
-
     public promiseToResolve: any[] = []
 
-    constructor() {
-        this.loadingManager = new LoadingManager();
-        this.loader = new FBXLoader(this.loadingManager);
+    constructor(loadingManager:LoadingManager) {
+        this.loader = new FBXLoader(loadingManager);
     }
 
-    public addAnimationToResolve(file: string) {
+    public addAnimationToResolve(file: string,name:string) {
         this.promiseToResolve.push(this.loader.load('/three/' + file,(animation)=>{
             const _animation = new AnimationMixer(animation).clipAction((animation as Object3D).animations[0])
             this.animationAction.push(_animation)

@@ -2,8 +2,10 @@ import express from 'express'
 import path from 'path'
 import cookieParser from 'cookie-parser'
 import logger from 'morgan'
+import {IndexRouter} from './routes'
+import {SocketManager} from './sockets'
 
-var indexRouter = require('./routes/index');
+var indexRouter = new IndexRouter()
 
 var app = express();
 
@@ -13,9 +15,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+app.use('/', indexRouter.router);
 
-module.exports = app;
 
 var debug = require('debug')('back:server');
 var http = require('http');
@@ -27,7 +28,7 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
-
+var socketMananger = new SocketManager(server)
 /**
  * Listen on provided port, on all network interfaces.
  */
@@ -98,3 +99,6 @@ function onListening() {
         : 'port ' + addr.port;
     console.log('Listening on ' + bind);
 }
+
+
+module.exports = app;

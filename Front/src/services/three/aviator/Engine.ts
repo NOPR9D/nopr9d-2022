@@ -1,5 +1,5 @@
 import { EngineBluePrint, ThreeObject } from "src/interfaces";
-import { PerspectiveCamera, Scene, WebGLRenderer } from "three";
+import { LoadingManager, PerspectiveCamera, Scene, WebGLRenderer } from "three";
 import { normalize } from "../utils";
 import { AirPlane } from "./AirPlane";
 import { EnnemiesHolder } from "./EnnemiesHolder";
@@ -10,6 +10,7 @@ import { Sound } from "./Sound";
 import { World } from "./World";
 
 export class Engine implements ThreeObject, EngineBluePrint {
+    public loadingManager: LoadingManager = new LoadingManager();
     public ready = false
 
     public colors = {

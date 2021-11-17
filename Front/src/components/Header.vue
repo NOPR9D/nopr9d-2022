@@ -1,5 +1,5 @@
 <template>
-  <div>header</div>
+  <div>En phase de test, revenez plus tard ;)</div>
 </template>
 
 <script lang="ts">

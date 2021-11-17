@@ -19,7 +19,15 @@ module.exports = {
             .loader("sass-loader")
             .options({ javascriptEnabled: true })
             .end();
-      
+
+
+            const svgRule = config.module.rule("svg");
+            svgRule.uses.clear();
+            svgRule
+              .use("svg-inline-loader")
+              .loader("svg-inline-loader")
+              .end();
+        
       
 
         config.plugin("html").tap((args) => {

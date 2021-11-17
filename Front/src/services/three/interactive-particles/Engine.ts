@@ -1,10 +1,11 @@
 import { EngineBluePrint } from "src/interfaces";
-import { Scene, PerspectiveCamera, WebGLRenderer } from "three";
+import { Scene, PerspectiveCamera, WebGLRenderer, LoadingManager } from "three";
 import { Particles } from "./Particles";
 import { TouchTexture } from "./TouchTexture";
 
 export class Engine implements EngineBluePrint {
     public scene!: Scene;
+    public loadingManager: LoadingManager = new LoadingManager();
     public camera!: PerspectiveCamera;
     public cameraPosition = {
         x: 0, y: 0, z: 300

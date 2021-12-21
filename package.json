@@ -19,5 +19,8 @@
   "homepage": "https://gitlab.com/nopr3d/noprod.fr-2021#readme",
   "devDependencies": {
     "prettier": "^2.4.1"
+  },
+  "dependencies": {
+    "axios": "^0.24.0"
   }
 }

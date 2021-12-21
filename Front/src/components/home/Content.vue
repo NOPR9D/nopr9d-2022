@@ -1,19 +1,18 @@
 <template>
-  <div>content</div>
+	<div>content</div>
 </template>
 
 <script lang="ts">
-import { Options, Vue } from "vue-class-component";
+import { Options, Vue } from 'vue-class-component';
 @Options({
-  props: {},
+	props: {},
 })
 export default class Content extends Vue {
-    mounted() {
-    console.log("hi");
-  }
+	mounted() {
+		console.log('hi');
+	}
 }
 </script>
 
 <style>
-
 </style>

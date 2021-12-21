@@ -2,19 +2,23 @@ import express from 'express'
 import path from 'path'
 import cookieParser from 'cookie-parser'
 import logger from 'morgan'
-import {IndexRouter} from './routes'
-import {SocketManager} from './sockets'
+import { IndexRouter } from './routes'
+import { Socket } from './sockets'
+import Cors from 'cors'
 
 var indexRouter = new IndexRouter()
 
 var app = express();
+
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(Cors())
 
+app.use('/', indexRouter.router);
 app.use('/', indexRouter.router);
 
 
@@ -28,7 +32,7 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
-var socketMananger = new SocketManager(server)
+var socketMananger = new Socket(server);
 /**
  * Listen on provided port, on all network interfaces.
  */

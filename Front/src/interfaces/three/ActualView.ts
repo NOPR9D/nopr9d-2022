@@ -1,5 +1,5 @@
-import { EngineBluePrint } from ".";
+import { EngineBluePrint } from '.';
 
 export interface ThreeActualView {
-    engine: EngineBluePrint
+	engine: EngineBluePrint;
 }

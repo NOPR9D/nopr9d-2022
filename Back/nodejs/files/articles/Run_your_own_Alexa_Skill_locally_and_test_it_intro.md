@@ -1,0 +1,1 @@
+So you had an Alexa device and you wanna make you own skill, here we will learn how we can make our custom skill and test it locally without depending [Aws Lambda](https://aws.amazon.com/fr/lambda/)

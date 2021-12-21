@@ -1,18 +1,31 @@
 import { Router } from "express";
 import { Route } from "../interfaces";
-import { IndexController } from "../controller/index.controller"
+import {
+  HomeController,
+  IndexController,
+  SceneController,
+  ScenesController,
+  ArticleController,
+  ArticlesController,
+} from "../controller";
 
 export class IndexRouter implements Route {
-  public path = '/'
-  public router!:Router
-  public indexController = new IndexController();
+  public path = "";
+  public router!: Router;
+  public indexController: IndexController;
+  public homeController: HomeController;
+  public sceneController: SceneController;
+  public scenesController: ScenesController;
+  public articleController: ArticleController;
+  public articlesController: ArticlesController;
 
   constructor() {
-    this.router = Router()
-    this.init()
-  }
-
-  private init() {
-    this.router.get(`${this.path}`, this.indexController.index)
+    this.router = Router();
+    this.indexController = new IndexController(this.router);
+    this.homeController = new HomeController(this.router);
+    this.sceneController = new SceneController(this.router);
+    this.scenesController = new ScenesController(this.router);
+    this.articleController = new ArticleController(this.router);
+    this.articlesController = new ArticlesController(this.router);
   }
 }

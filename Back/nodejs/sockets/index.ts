@@ -1,3 +1,5 @@
 export * from './SocketActions'
 export * from './SocketEvents'
+export * from './SocketEngine'
+export * from './Socket'
 export * from './SocketManager'

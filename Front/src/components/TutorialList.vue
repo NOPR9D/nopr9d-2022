@@ -3,16 +3,15 @@
 		<div class="col">
 			<ArticleCard />
 		</div>
-
-		<div v-if="content" v-html="content"></div>
+		<div :v-for="article in articles"></div>
 	</div>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
 import ArticleCard from '@/components/cards/Article.vue';
-import { Subscription } from 'rxjs';
-import { Api, Markdown } from '@/services';
+import { map, Subscription } from 'rxjs';
+import { Markdown } from '@/services';
 import { AxiosObservable } from 'axios-observable';
 
 @Options({
@@ -23,22 +22,32 @@ export default class ArticlesList extends Vue {
 	public content!: string;
 
 	public articles: {
-		title: string;
-		socket: { props: string; default?: string };
+		intro: string;
+		name: string;
 	}[] = [];
 
 	private sub!: Subscription;
 
 	data() {
 		return {
-			content: this.content,
+			articles: this.articles,
 		};
 	}
 
 	mounted() {
-		this.sub = this.getArticles().subscribe((scenes: any) => {
-			this.content = this.markdown.render(scenes.data.test);
-		});
+		this.sub = this.getArticles()
+			.pipe(
+				map((articles) => {
+					return articles?.data.map((article: any) => {
+						article.intro = this.markdown.render(article.intro);
+						return article;
+					});
+				})
+			)
+			.subscribe((articles: any) => {
+				console.log(articles);
+				this.articles = articles;
+			});
 	}
 
 	public getArticles(): AxiosObservable<any> {

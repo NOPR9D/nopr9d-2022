@@ -58,18 +58,18 @@ export default class View {
 		this.actualView = this.initAppIntro();
 	}
 
-	public initAppIntro() {
+	public initAppIntro(): AppIntro {
 		return new AppIntro(this.scene, this.camera, this.renderer);
 	}
-	public initInteractiveParticles() {
+	public initInteractiveParticles(): InteractiveParticles {
 		return new InteractiveParticles(this.scene, this.camera, this.renderer);
 	}
 
-	public initAviator() {
+	public initAviator(): Aviator {
 		return new Aviator(this.scene, this.camera, this.renderer);
 	}
 
-	public initSpaceFlight() {
+	public initSpaceFlight(): SpaceFlight {
 		return new SpaceFlight(this.scene, this.camera);
 	}
 

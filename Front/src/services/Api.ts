@@ -1,5 +1,4 @@
 import axios, { AxiosObservable } from 'axios-observable';
-
 export class Api {
 	private url = 'http://localhost:3000';
 

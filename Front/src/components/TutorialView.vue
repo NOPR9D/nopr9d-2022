@@ -28,10 +28,10 @@ export default class TutorialView extends Vue {
 		content: string;
 	}[] = [];
 
-	private sub!: Subscription;
+	private articles$!: Subscription;
 
 	mounted() {
-		this.sub = this.getArticle().subscribe((scenes: any) => {
+		this.articles$ = this.getArticle().subscribe((scenes: any) => {
 			this.article = scenes.data;
 		});
 	}
@@ -43,7 +43,7 @@ export default class TutorialView extends Vue {
 	}
 
 	unmounted() {
-		this.sub?.unsubscribe();
+		this.articles$?.unsubscribe();
 	}
 }
 </script>

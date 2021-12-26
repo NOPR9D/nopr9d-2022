@@ -22,9 +22,9 @@ import Footer from './../components/Footer.vue';
 	components: { Content, Header, SceneList, TutorialList, Footer },
 })
 export default class Template extends Vue {
-	mounted() {
-		this.$api.getHome();
-	}
+	// mounted() {
+	// 	this.$api.getHome();
+	// }
 }
 </script>
 

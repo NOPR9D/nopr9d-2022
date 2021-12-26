@@ -1,1 +1,3 @@
-export interface Article {}
+export interface Articles {
+	[key: string]: string;
+}

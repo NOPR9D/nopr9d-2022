@@ -8,6 +8,12 @@ import { initShape } from '@/services/mojs';
 export default class App extends Vue {
 	mounted() {
 		initShape();
+
+		setTimeout(() => {
+			this.$store.dispatch('selectScene', {
+				scene: 'blabla',
+			});
+		});
 	}
 }
 </script>

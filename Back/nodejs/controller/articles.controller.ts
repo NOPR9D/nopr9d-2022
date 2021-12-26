@@ -16,21 +16,23 @@ export class ArticlesController extends AbstractController {
       Articles.forEach((article, index) => {
         $holder.push(
           ...[
-            $fs.readFile(
-              this.folders.articles.path + "/" + article.file + "_intro.md",
-              "utf-8"
-            ),
+            $fs
+              .readFile(
+                this.folders.articles.path + "/" + article.file + "_intro.md",
+                "utf-8"
+              )
+              .then((intro) => {
+                return {
+                  intro: intro,
+                  name: article.name,
+                };
+              }),
           ]
         );
       });
 
       const results = await Promise.all($holder);
-      result.push({
-        intro: results[0],
-        picture: results[1],
-      });
-
-      res.json({ result });
+      res.json(results);
     } catch (error) {
       next(error);
     }

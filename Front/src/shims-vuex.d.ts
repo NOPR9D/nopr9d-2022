@@ -18,7 +18,7 @@ export interface _Store {
 declare module '@vue/runtime-core' {
 	interface ComponentCustomProperties {
 		$store: {
-			options: Store<_Store> | undefined;
+			options: _Store | (() => _Store) | undefined;
 			mutations: MutationTree<_Store> | undefined;
 			actions: ActionTree<_Store, _Store> | undefined;
 			getters: GetterTree<_Store, _Store> | undefined;

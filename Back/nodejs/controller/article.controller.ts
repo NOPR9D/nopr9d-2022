@@ -18,9 +18,7 @@ export class ArticleController extends AbstractController {
       try {
         $fs
           .readFile(this.folders.articles.path + "/" + article + ".md", "utf-8")
-          .then((data) => {
-            res.json(data);
-          });
+          .then(res.json);
       } catch (error) {
         next(error);
       }

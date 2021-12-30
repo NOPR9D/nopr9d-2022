@@ -2,9 +2,8 @@
 	<a-layout>
 		<!-- <Header /> -->
 		<a-layout-content :style="{ padding: '0 50px', marginTop: '64px' }">
-			<div :style="{ background: '#000', padding: '24px', minHeight: '380px' }">
-				<!-- <SceneList /> -->
-				<TutorialList />
+			<div>
+				<TutorialList v-if="articles !== null" :articles="articles" />
 			</div>
 		</a-layout-content>
 		<!-- <Footer /> -->
@@ -18,13 +17,34 @@ import Header from './../components/Header.vue';
 import SceneList from './../components/SceneList.vue';
 import TutorialList from './../components/TutorialList.vue';
 import Footer from './../components/Footer.vue';
+import { Article } from '@/interfaces';
+import { map, Subscription } from 'rxjs';
 @Options({
 	components: { Content, Header, SceneList, TutorialList, Footer },
 })
 export default class Template extends Vue {
-	// mounted() {
-	// 	this.$api.getHome();
-	// }
+	public articles: Article[] | null = null;
+	public articles$!: Subscription;
+
+	mounted() {
+		const mapArticleToView = map((articles: { data: Article[] }) => {
+			return articles?.data.map((article: any) => {
+				article.intro = this.markdown.render(article.intro);
+				return article;
+			});
+		});
+
+		this.$api
+			.getArticles()
+			.pipe(mapArticleToView)
+			.subscribe((articles: any) => {
+				this.articles = articles;
+			});
+	}
+
+	unmounted() {
+		this.articles$?.unsubscribe();
+	}
 }
 </script>
 

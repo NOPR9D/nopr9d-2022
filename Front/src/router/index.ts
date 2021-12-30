@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import Template from '../views/Template.vue';
 import Canvas from '../views/Canvas.vue';
+import Article from '../views/Article.vue';
+import Articles from '../views/Articles.vue';
 
 const routes: Array<RouteRecordRaw> = [
 	{
@@ -12,6 +14,16 @@ const routes: Array<RouteRecordRaw> = [
 		path: '/canvas',
 		name: 'Canvas',
 		component: Canvas,
+	},
+	{
+		path: '/articles',
+		name: 'Articles',
+		component: Articles,
+	},
+	{
+		path: '/article',
+		name: 'Article',
+		component: Article,
 	},
 	{ path: '/:pathMatch(.*)*', redirect: { name: 'Template' } },
 ];

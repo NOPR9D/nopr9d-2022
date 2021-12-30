@@ -5,7 +5,7 @@ import {
 	Store,
 	StoreOptions,
 } from 'vuex';
-import { Api } from './services';
+import { Api, Markdown } from './services';
 
 export interface _Store {
 	scene: string;
@@ -17,12 +17,8 @@ export interface _Store {
 
 declare module '@vue/runtime-core' {
 	interface ComponentCustomProperties {
-		$store: {
-			options: _Store | (() => _Store) | undefined;
-			mutations: MutationTree<_Store> | undefined;
-			actions: ActionTree<_Store, _Store> | undefined;
-			getters: GetterTree<_Store, _Store> | undefined;
-		};
+		$store: Store<_Store>;
 		$api: Api;
+		markdown: Markdown;
 	}
 }

@@ -1,7 +1,7 @@
 import { Article, Tags } from "../../interfaces";
 
 export const tags: Tags = {
-  RxJS: { name: "RxJS", backgroundColor: "#FAFAFA", fontColor: "#F9F9F9" },
+  RxJS: { name: "RxJS", backgroundColor: "#D81B60", fontColor: "#F9F9F9" },
   Javascript: {
     name: "Javascript",
     backgroundColor: "#EFD81D",
@@ -30,6 +30,7 @@ export const tags: Tags = {
 
 export const Articles: Article[] = [
   {
+    id: 0,
     name: "Build Single Page App with Rx [From scratch]",
     file: "Build_Single_Page_App_with_Rx_From_scratch",
     picturesExtension: ".gif",
@@ -37,6 +38,7 @@ export const Articles: Article[] = [
     date: "09/01/2021",
   },
   {
+    id: 1,
     name: "Create a background with GLSL Shader [Threejs | Typescript]",
     file: "Create_background_with_GLSL_Shader",
     picturesExtension: ".gif",
@@ -44,6 +46,7 @@ export const Articles: Article[] = [
     date: "17/11/2020",
   },
   {
+    id: 2,
     name: "Run your own Alexa Skill locally (and test it) [JS]",
     file: "Run_your_own_Alexa_Skill_locally_and_test_it",
     picturesExtension: ".gif",
@@ -51,6 +54,7 @@ export const Articles: Article[] = [
     date: "05/12/2020",
   },
   {
+    id: 3,
     name: "Update of Vue Rx to Vue Next Rx",
     file: "Update_of_Vue_Rx_to_Vue_Next_Rx",
     tags: [tags.Vue3, tags.RxJS],

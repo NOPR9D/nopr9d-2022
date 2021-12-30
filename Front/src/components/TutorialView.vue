@@ -11,7 +11,6 @@ import { Options, Vue } from 'vue-class-component';
 import ArticleCard from '@/components/cards/Article.vue';
 import { Subscription } from 'rxjs';
 import { Markdown } from '@/services';
-import { AxiosObservable } from 'axios-observable';
 
 @Options({
 	components: { ArticleCard },
@@ -29,18 +28,6 @@ export default class TutorialView extends Vue {
 	}[] = [];
 
 	private articles$!: Subscription;
-
-	mounted() {
-		this.articles$ = this.getArticle().subscribe((scenes: any) => {
-			this.article = scenes.data;
-		});
-	}
-
-	public getArticle(): AxiosObservable<any> {
-		// eslint-disable-next-line
-		// @ts-ignore
-		return this.$api.getArticle(this.$props['title']);
-	}
 
 	unmounted() {
 		this.articles$?.unsubscribe();

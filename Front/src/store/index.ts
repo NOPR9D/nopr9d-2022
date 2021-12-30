@@ -33,7 +33,6 @@ export default createStore({
 		},
 		selectScene: async ({ commit, state }, args) => {
 			return new Promise((res, err) => {
-				console.log(args);
 				commit('setScene', args);
 				commit('setCanvasState', { state: true });
 				commit('setArticleState', { state: false });

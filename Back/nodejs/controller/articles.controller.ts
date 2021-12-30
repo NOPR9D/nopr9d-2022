@@ -10,7 +10,6 @@ export class ArticlesController extends AbstractController {
     this.addToRouter("get", this.path, this.index);
   }
   public index = async (req: Request, res: Response, next: NextFunction) => {
-    const result: any[] = [];
     try {
       const $holder: Promise<any>[] = [];
       Articles.forEach((article, index) => {
@@ -25,6 +24,10 @@ export class ArticlesController extends AbstractController {
                 return {
                   intro: intro,
                   name: article.name,
+                  file: article.file,
+                  picturesExtension: article.picturesExtension,
+                  tags: article.tags,
+                  date: article.date,
                 };
               }),
           ]

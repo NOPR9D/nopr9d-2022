@@ -8,12 +8,6 @@ import { initShape } from '@/services/mojs';
 export default class App extends Vue {
 	mounted() {
 		initShape();
-
-		setTimeout(() => {
-			this.$store.dispatch('selectScene', {
-				scene: 'blabla',
-			});
-		});
 	}
 }
 </script>
@@ -29,6 +23,7 @@ body {
 	padding: 0;
 	display: flex;
 	overflow: hidden;
+	overflow-y: auto;
 	flex-direction: column;
 	background: black;
 }

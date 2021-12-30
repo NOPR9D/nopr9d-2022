@@ -1,16 +1,17 @@
 <template>
-	<ArticleView :title="'webgl-canvas'" />
+	<TutorialView :title="'webgl-canvas'" />
 </template>
 
 <script lang="ts">
+import { Article } from '@/interfaces';
 import { Subscription } from 'rxjs';
 import { Options, Vue } from 'vue-class-component';
-import ArticleView from './../components/ArticleView.vue';
+import TutorialView from './../components/TutorialView.vue';
 @Options({
-	components: { ArticleView },
+	components: { TutorialView },
 })
 export default class ArticlePage extends Vue {
-	public article!: { content: string; title: string };
+	public article!: Article;
 	public article$!: Subscription;
 	mounted() {
 		console.log(this.$store.state);
@@ -20,7 +21,7 @@ export default class ArticlePage extends Vue {
 	}
 
 	unmounted() {
-		this.scene$?.unsubscribe();
+		this.article$?.unsubscribe();
 	}
 }
 </script>

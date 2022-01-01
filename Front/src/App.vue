@@ -56,4 +56,13 @@ body {
 .flex-fill {
 	flex: 1 1 auto;
 }
+
+.bg-description {
+	background: rgba(237, 237, 237, 0.384) !important;
+	color: #666 !important;
+}
+
+.pointer {
+	cursor: pointer !important;
+}
 </style>

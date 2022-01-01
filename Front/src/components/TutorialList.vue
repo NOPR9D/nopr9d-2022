@@ -6,9 +6,10 @@
 				size="large"
 				:pagination="pagination"
 				:data-source="articles"
+				class="pointer"
 			>
 				<template #renderItem="{ item }">
-					<a-list-item class="border">
+					<a-list-item class="border bg-description _list_item my-2 py-2">
 						<a-list-item-meta>
 							<template #title>
 								<a href="/Article">{{ item.name }}</a>
@@ -35,13 +36,14 @@
 										align-items-center
 									"
 								>
+									<div class="fw-bold text-dark">Tags :</div>
 									<div
 										v-for="(
 											{ name, backgroundColor, fontColor }, key
 										) in item.tags"
 										:key="key"
 										:style="`background: ${backgroundColor}; color: ${fontColor}; font-weight: bold;`"
-										class="p-1 mx-1 rounded"
+										class="py-1 px-2 mx-1 rounded"
 									>
 										{{ name }}
 									</div>
@@ -67,6 +69,7 @@ import { PropType } from '@vue/runtime-core';
 	data: () => {
 		return {
 			activatedKey: -1,
+			hover: false,
 		};
 	},
 	setup: () => {
@@ -87,5 +90,8 @@ export default class ArticlesList extends Vue {}
 
 <style lang="scss" scoped>
 .article_list_intro {
+}
+._list_item:hover {
+	box-shadow: 5px 5px 5px rgba(128, 128, 128, 0.486);
 }
 </style>

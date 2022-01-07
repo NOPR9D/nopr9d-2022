@@ -6,7 +6,7 @@ import { router } from './router';
 import i18n from './i18n';
 
 import 'ant-design-vue/dist/antd.css';
-import { Avatar, List } from 'ant-design-vue';
+import { Avatar, List, Modal } from 'ant-design-vue';
 
 const app = createApp(App);
 
@@ -18,5 +18,6 @@ app.use(store);
 app.use(router);
 app.use(List);
 app.use(Avatar);
+app.use(Modal);
 
 app.mount('#app');

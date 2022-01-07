@@ -1,3 +1,18 @@
 {
-  "message": "hello i18n !!"
+  "AppTitle": "My Labz",
+  "intro":{
+    "title":"Hi! I'm {username}.",
+    "subTitle":"I'm...",
+    "IAmAdeveloper":"a FullStack developer living in Lille, France",
+    "IAmInterestedWith":"am specialized in the development under Javascript / Typescript with a front-end expertise, but I am able to work in several areas. (PHP7, Symfony3, Kotlin, Docker, ...)",
+    "IAmGladYouAreHere":"glad you are here and i hope you enjoy your visit"
+  },
+  "about":{
+    "me":{
+
+    },
+    "you":{
+
+    }
+  }
 }

@@ -13,6 +13,17 @@ export interface _Store {
 	isArticleActive: boolean;
 	isSocketActive: boolean;
 	isReady: boolean;
+	modals: {
+		fullScreen: {
+			isOpen: boolean;
+			content: null;
+			props: {
+				title: string;
+				component: any;
+				content: string;
+			};
+		};
+	};
 }
 
 declare module '@vue/runtime-core' {

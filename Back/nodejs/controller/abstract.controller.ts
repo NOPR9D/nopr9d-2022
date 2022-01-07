@@ -1,10 +1,8 @@
-import { Method } from "axios";
 import { Router } from "express";
-
 export class AbstractController {
   private router!: Router;
   public folders: { [key: string]: { path: string } } = {
-    articles: { path: "files/articles" },
+    articles: { path: "public/articles" },
   };
   constructor(router: Router) {
     this.router = router;

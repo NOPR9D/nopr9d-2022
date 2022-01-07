@@ -1079,6 +1079,13 @@
     "json5" "^2.2.0"
     "loader-utils" "^2.0.0"
 
+"@jeff-tian/markdown-it-katex@^2.1.0":
+  "integrity" "sha512-vK6dRcXbe1kuoKLSnrd33wpzvE0J3Ys9dZrb5y9iOc433Xq1FzKalSf60VnazQZcTY/IRCjwW47pJbj04UXQvg=="
+  "resolved" "https://registry.npmjs.org/@jeff-tian/markdown-it-katex/-/markdown-it-katex-2.1.0.tgz"
+  "version" "2.1.0"
+  dependencies:
+    "katex" "^0.13.13"
+
 "@mojs/core@^1.2.1":
   "integrity" "sha512-pquzS/NHv6SpFTlM7WiBz+ztTXq7F60QhngYT+XHwS1t01o7JSpsX0FIns5zTN/sQyLjU6J+mXpnh2k3t6w+DA=="
   "resolved" "https://registry.npmjs.org/@mojs/core/-/core-1.2.1.tgz"
@@ -1267,6 +1274,11 @@
   "integrity" "sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA=="
   "resolved" "https://registry.npmjs.org/@types/parse-json/-/parse-json-4.0.0.tgz"
   "version" "4.0.0"
+
+"@types/prismjs@^1.16.6":
+  "integrity" "sha512-dTvnamRITNqNkqhlBd235kZl3KfVJQQoT5jkXeiWSBK7i4/TLKBNLV0S1wOt8gy4E2TY722KLtdmv2xc6+Wevg=="
+  "resolved" "https://registry.npmjs.org/@types/prismjs/-/prismjs-1.16.6.tgz"
+  "version" "1.16.6"
 
 "@types/q@^1.5.1":
   "integrity" "sha512-L28j2FcJfSZOnL1WBjDYp2vUHCeIFlyYI/53EwD/rKUBQ7MtUUfbQWiyKJGpcnv4/WgrhWsFKrcPstcAt/J0tQ=="
@@ -3122,6 +3134,11 @@
   "integrity" "sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ=="
   "resolved" "https://registry.npmjs.org/commander/-/commander-2.20.3.tgz"
   "version" "2.20.3"
+
+"commander@^8.0.0":
+  "integrity" "sha512-OkTL9umf+He2DZkUq8f8J9of7yL6RJKI24dVITBmNfZBmri9zYZQrKkuXiKhyfPSu8tUhnVBB1iKXevvnlR4Ww=="
+  "resolved" "https://registry.npmjs.org/commander/-/commander-8.3.0.tgz"
+  "version" "8.3.0"
 
 "commander@~2.19.0":
   "integrity" "sha512-6tvAOO+D6OENvRAh524Dh9jcfKTYDQAqvqezbCW82xj5X0pSrcpxtvRKHLG0yBY6SD7PSDrJaj+0AiOcKVd1Xg=="
@@ -6170,6 +6187,13 @@
     "json-schema" "0.2.3"
     "verror" "1.10.0"
 
+"katex@^0.13.13":
+  "integrity" "sha512-jZxYuKCma3VS5UuxOx/rFV1QyGSl3Uy/i0kTJF3HgQ5xMinCQVF8Zd4bMY/9aI9b9A2pjIBOsjSSm68ykTAr8w=="
+  "resolved" "https://registry.npmjs.org/katex/-/katex-0.13.24.tgz"
+  "version" "0.13.24"
+  dependencies:
+    "commander" "^8.0.0"
+
 "killable@^1.0.1":
   "integrity" "sha512-LzqtLKlUwirEUyl/nicirVmNiPvYs7l5n8wOPP7fyJVpUPkvCnW/vuiXGpylGUlnPDnB7311rARzAt3Mhswpjg=="
   "resolved" "https://registry.npmjs.org/killable/-/killable-1.0.1.tgz"
@@ -6441,6 +6465,13 @@
   "version" "1.0.0"
   dependencies:
     "object-visit" "^1.0.0"
+
+"markdown-it-prism@^2.2.2":
+  "integrity" "sha512-lsyKocpHdRH8utUv3n0+BaDT1jQqX3wcacbFOkFPncX8C/Te3Wmv+Y8O4GVS7kdlj35fN4U455wzCW41pd93cw=="
+  "resolved" "https://registry.npmjs.org/markdown-it-prism/-/markdown-it-prism-2.2.2.tgz"
+  "version" "2.2.2"
+  dependencies:
+    "prismjs" "1.26.0"
 
 "markdown-it@^12.3.0":
   "integrity" "sha512-T345UZZ6ejQWTjG6PSEHplzNy5m4kF6zvUpHVDv8Snl/pEU0OxIK0jGg8YLVNwJvT8E0YJC7/2UvssJDk/wQCQ=="
@@ -7801,6 +7832,11 @@
   dependencies:
     "lodash" "^4.17.20"
     "renderkid" "^2.0.4"
+
+"prismjs@1.26.0":
+  "integrity" "sha512-HUoH9C5Z3jKkl3UunCyiD5jwk0+Hz0fIgQ2nbwU2Oo/ceuTAQAg+pPVnfdt2TJWRVLcxKh9iuoYDUSc8clb5UQ=="
+  "resolved" "https://registry.npmjs.org/prismjs/-/prismjs-1.26.0.tgz"
+  "version" "1.26.0"
 
 "process-nextick-args@~2.0.0":
   "integrity" "sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag=="

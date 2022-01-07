@@ -3,6 +3,7 @@ import Template from '../views/Template.vue';
 import Canvas from '../views/Canvas.vue';
 import Article from '../views/Article.vue';
 import Articles from '../views/Articles.vue';
+import CodePen from '../views/CodePen.vue';
 
 const routes: Array<RouteRecordRaw> = [
 	{
@@ -24,6 +25,11 @@ const routes: Array<RouteRecordRaw> = [
 		path: '/article',
 		name: 'Article',
 		component: Article,
+	},
+	{
+		path: '/codepen',
+		name: 'Codepen',
+		component: CodePen,
 	},
 	{ path: '/:pathMatch(.*)*', redirect: { name: 'Template' } },
 ];

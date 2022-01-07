@@ -7,11 +7,11 @@ export class Api {
 	}
 
 	public getArticles(): AxiosObservable<any> {
-		return axios.get<any>(this.url + '/articles');
+		return axios.get<any>(this.url + '/articles/');
 	}
 
-	public getArticle(title: string): AxiosObservable<any> {
-		return axios.get<any>(this.url + '/article/' + title);
+	public getArticle(filename: string): AxiosObservable<any> {
+		return axios.get<any>(this.url + '/articles/' + filename);
 	}
 
 	public getHome(): AxiosObservable<any> {

@@ -1,10 +1,15 @@
 <template>
 	<router-view></router-view>
+	<ModalFullScreen />
 </template>
 
 <script lang="ts">
-import { Vue } from 'vue-class-component';
+import { Options, Vue } from 'vue-class-component';
 import { initShape } from '@/services/mojs';
+import ModalFullScreen from './modals/ModalFullScreen.vue';
+@Options({
+	components: { ModalFullScreen },
+})
 export default class App extends Vue {
 	mounted() {
 		initShape();

@@ -14,11 +14,10 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(Cors({ origin: "*" }));
 app.use(express.static(path.join(__dirname, "/public")));
 app.use("images", express.static(path.join(__dirname, "/public/images")));
-app.use(Cors());
-
-app.use("/", indexRouter.router);
+app.use("articles", express.static(path.join(__dirname, "/public/articles")));
 app.use("/", indexRouter.router);
 
 var debug = require("debug")("back:server");

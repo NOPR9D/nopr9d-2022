@@ -4,12 +4,25 @@
 			<a-list
 				item-layout="vertical"
 				size="large"
-				:pagination="pagination"
-				:data-source="articles"
+				v-bind:pagination="pagination"
+				v-bind:data-source="articles"
 				class="pointer"
 			>
 				<template #renderItem="{ item }">
-					<a-list-item class="border bg-description _list_item my-2 py-2">
+					<a-list-item
+						class="border bg-description _list_item my-2 py-2"
+						@click="
+							$store.dispatch('openModal', {
+								state: {
+									props: {
+										title: item.name,
+										component: view,
+										item: item,
+									},
+								},
+							})
+						"
+					>
 						<a-list-item-meta>
 							<template #title>
 								<a href="/Article">{{ item.name }}</a>
@@ -60,7 +73,7 @@
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
 import { Article } from '@/interfaces';
-import { PropType } from '@vue/runtime-core';
+import { defineAsyncComponent, PropType } from '@vue/runtime-core';
 
 @Options({
 	props: {
@@ -70,6 +83,7 @@ import { PropType } from '@vue/runtime-core';
 		return {
 			activatedKey: -1,
 			hover: false,
+			view: defineAsyncComponent(() => import('./TutorialView.vue')),
 		};
 	},
 	setup: () => {
@@ -92,6 +106,6 @@ export default class ArticlesList extends Vue {}
 .article_list_intro {
 }
 ._list_item:hover {
-	box-shadow: 5px 5px 5px rgba(128, 128, 128, 0.486);
+	box-shadow: 3.5px 3.5px 3.5px rgba(128, 128, 128, 0.486);
 }
 </style>

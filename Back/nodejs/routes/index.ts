@@ -5,7 +5,6 @@ import {
   IndexController,
   SceneController,
   ScenesController,
-  ArticleController,
   ArticlesController,
 } from "../controller";
 
@@ -16,7 +15,6 @@ export class IndexRouter implements Route {
   public homeController: HomeController;
   public sceneController: SceneController;
   public scenesController: ScenesController;
-  public articleController: ArticleController;
   public articlesController: ArticlesController;
 
   constructor() {
@@ -25,7 +23,6 @@ export class IndexRouter implements Route {
     this.homeController = new HomeController(this.router);
     this.sceneController = new SceneController(this.router);
     this.scenesController = new ScenesController(this.router);
-    this.articleController = new ArticleController(this.router);
     this.articlesController = new ArticlesController(this.router);
   }
 }

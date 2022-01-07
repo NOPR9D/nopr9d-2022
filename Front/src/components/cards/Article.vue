@@ -1,13 +1,10 @@
 <template>
-	<div class="card">
-		<a-collapse v-model:activeKey="activeKey" ghost>
-			<a-collapse-panel key="1" header="This is panel header 1">
-				<div class="card_title" v-html="title"></div>
-			</a-collapse-panel>
-			<a-collapse-panel key="2" header="This is panel header 2">
-				<div class="card_intro" v-html="intro"></div>
-			</a-collapse-panel>
-		</a-collapse>
+	<div class="card_article_view">
+		<div class="card_title" v-html="title"></div>
+		<div
+			class="card_intro col-10 d-flex flex-column justify-content-center m-auto"
+			v-html="content"
+		></div>
 	</div>
 </template>
 
@@ -19,22 +16,36 @@ import { Options, Vue } from 'vue-class-component';
 		socketContent: { type: String, default: 'N/A' },
 		title: { type: String, default: 'N/A' },
 		picture: { type: String, default: 'N/A' },
-		intro: { type: String, default: 'N/A' },
+		content: { type: String, default: 'N/A' },
 	},
 })
 export default class ArticleCard extends Vue {}
 </script>
 
-<style lang="scss" scoped>
-.card {
+<style lang="scss">
+.card_article_view {
 	border: solid black 1px;
+	background: #090909;
+	text-align: start;
+	color: white;
+	font-weight: bold;
 
 	.card_title {
-		background-color: rgb(75, 75, 75);
+		background-color: #242424;
+		padding: 2em 2em;
+		text-align: center;
+		border-bottom: solid 1px grey;
 	}
 
 	.card_intro {
-		background-color: grey;
+		background-color: #242424;
+		padding: 0em 2em;
+
+		* > img {
+			padding: 2em 0em;
+			display: block;
+			margin: auto;
+		}
 	}
 }
 
